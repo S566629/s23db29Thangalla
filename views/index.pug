@@ -4,4 +4,24 @@ block content
   h1= Webapps 
   p Welcome to #{title}
   p Saikumar Thangalla pursuing Masters at Northwest Missouri state university
-  button(type="button", class="btn btn-primary") Press me 
+ 
+   <br>
+   div
+   button(type="button", class="btn btn-primary", onclick="goFaster()") Press me 
+   div#faster Increase the speed
+
+  
+
+  
+
+  script.
+    var mph = 20;
+    var change = 1;
+    
+    function goFaster() {
+      mph += change;
+      change += 1;
+      document.getElementById("faster").innerText = `MPH ${mph} with change ${change}`;
+    }
+ 
+  
