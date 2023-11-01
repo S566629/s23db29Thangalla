@@ -7,10 +7,16 @@ block content
       .container-fluid
         div.row
         
-          
-            each item in results
-              div.col-sm-2
-                  h5.card-title #{item.Name}
-                  p.card-text   #{item.Size}
-                  p.card-text   #{item.Year}
-    
+          each item, index in results
+            div(class="col-sm-2", onclick=`buy(${index})`)
+                  div.col-sm-2 
+                      h5.card-title #{item.Name}
+                      p.card-text   #{item.Size}
+                      p.card-text   #{item.Year}
+                      
+
+
+  script.
+    function buy(index) {
+      alert(`You purchased item at index: ${index}`);
+    }
