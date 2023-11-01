@@ -5,11 +5,11 @@ block content
   - let results = [  { 'Name': 'NIT', 'Size': 'LARGE', 'Year':2022 }, { 'Name': 'VIT', 'Size': 'MEDIUM', 'Year':2023}, { 'Name': 'IIT', 'Size': 'SMALL', 'Year':2021 }]
     
       .container-fluid
-        .row
-          .col-sm-2
+        div.row
+          
           
             each item in results
-              .col-sm-2
+              div.col-sm-2
                   h5.card-title #{item.Name}
                   p.card-text   #{item.Size}
                   p.card-text   #{item.Year}
