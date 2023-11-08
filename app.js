@@ -4,11 +4,26 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString);
+
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
+db.once("open", function(){
+console.log("Connection to DB succeeded")});
+
+var institute = require("./models/instituteSchema");
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var instituteRouter = require('./routes/institute');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
+var resourceRouter = require('./routes/resource');
 
 
 
@@ -31,8 +46,37 @@ app.use('/users', usersRouter);
 app.use('/institute', instituteRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
+app.use('/resource', resourceRouter);
 
+//We can seed the collection if needed on
 
+async function recreateDB(){
+// Delete everything
+  await institute.deleteMany();
+  let instance1 = new institute({Name:"NIT", size:'LARGE', year:2022});
+  instance1.save().then(doc=>{
+  console.log("First object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+
+  let instance2 = new institute({Name:"VIT", size:'MEDIUM', year:2023});
+  instance2.save().then(doc=>{
+  console.log("Second object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+
+  let instance3 = new institute({Name:"IIT", size:'SMALL', year:2021});
+  instance3.save().then(doc=>{
+  console.log("Third object saved")}
+  ).catch(err=>{
+  console.error(err)
+  });
+  
+}
+let reseed = true;
+if (reseed) {recreateDB();}
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
