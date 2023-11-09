@@ -1,22 +1,17 @@
 extends layout
-
+ 
 block content
-  h1  #{title}
-  - let results = [  { 'Name': 'NIT', 'Size': 'LARGE', 'Year':2022 }, { 'Name': 'VIT', 'Size': 'MEDIUM', 'Year':2023}, { 'Name': 'IIT', 'Size': 'SMALL', 'Year':2021 }]
-    
-      .container-fluid
-        div.row
-        
-          each item, index in results
-            div(class="col-sm-2", onclick=`buy(${index})`)
-                  div.col-sm-2 
-                      h5.card-title #{item.Name}
-                      p.card-text   #{item.Size}
-                      p.card-text   #{item.Year}
-                      
-
-
+  h1 #{title}
+  .container-fluid
+    .row
+      - const result = results
+      each item, index in result
+        .col-sm-2(onclick=`buy(${index})`)
+          h5.card-title #{item.Name}
+          p.card-text   #{item.Size}
+          p.card-text   #{item.year}
   script.
     function buy(index) {
       alert(`You purchased item at index: ${index}`);
     }
+

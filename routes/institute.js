@@ -1,9 +1,6 @@
 var express = require('express');
+const institute_controlers= require('../controllers/institute');
 var router = express.Router();
-
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('institute', { title: 'Search Results Institute' });
-});
-
+/* GET costumes */
+router.get('/', institute_controlers.institute_view_all_Page);
 module.exports = router;

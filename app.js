@@ -53,21 +53,21 @@ app.use('/resource', resourceRouter);
 async function recreateDB(){
 // Delete everything
   await institute.deleteMany();
-  let instance1 = new institute({Name:"NIT", size:'LARGE', year:2022});
+  let instance1 = new institute({Name:"NIT", Size:'LARGE', year:2022});
   instance1.save().then(doc=>{
   console.log("First object saved")}
   ).catch(err=>{
   console.error(err)
   });
 
-  let instance2 = new institute({Name:"VIT", size:'MEDIUM', year:2023});
+  let instance2 = new institute({Name:"VIT", Size:'MEDIUM', year:2023});
   instance2.save().then(doc=>{
   console.log("Second object saved")}
   ).catch(err=>{
   console.error(err)
   });
 
-  let instance3 = new institute({Name:"IIT", size:'SMALL', year:2021});
+  let instance3 = new institute({Name:"IIT", Size:'SMALL', year:2021});
   instance3.save().then(doc=>{
   console.log("Third object saved")}
   ).catch(err=>{
