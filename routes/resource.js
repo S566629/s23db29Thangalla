@@ -1,5 +1,5 @@
 var express = require('express');
-
+const institute_controlers= require('../controllers/institute');
 var router = express.Router();
 
 // Require controller modules.
@@ -8,6 +8,7 @@ var institute_controller = require('../controllers/institute');
 /// API ROUTE ///
 // GET resources base.
 router.get('/', api_controller.api);
+router.get('/', institute_controlers.institute_view_all_Page );
 /// COSTUME ROUTES ///
 // POST request for creating a Costume.
 router.post('/institute', institute_controller.institute_create_post);

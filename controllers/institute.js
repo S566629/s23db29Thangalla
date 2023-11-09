@@ -13,7 +13,21 @@ exports.institute_list = async function(req, res) {
     }
     };
 
+    // VIEWS
+// Handle a show all view
+exports.institute_view_all_Page = async function(req, res) {
+    try{
+    theinstitute = await institute.find();
+    res.render('institute', { title: 'institute Search Results', results: theinstitute });
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+    };
 
+    
+    
     
     
     
