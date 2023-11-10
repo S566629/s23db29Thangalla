@@ -4,3 +4,4 @@ var router = express.Router();
 /* GET costumes */
 router.get('/', institute_controlers.institute_view_all_Page);
 module.exports = router;
+

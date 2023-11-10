@@ -1,6 +1,10 @@
 var institutes = require('../models/instituteSchema');
 // List of all institute
 
+
+
+    
+
 // List of all Costumes
 exports.institute_list = async function(req, res) {
     try{
@@ -48,16 +52,24 @@ res.send(`{"error": ${err}}`);
 };
 
     
-    
-    
-    
+
+
+
 /*exports.institute_list = function(req, res) {
 res.send('NOT IMPLEMENTED in list: institute list');
 };*/
 // for a specific institute.
-exports.institute_detail = function(req, res) {
-res.send('NOT IMPLEMENTED in detail: institute detail: ' + req.params.id);
+exports.institute_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await institutes.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
 };
+    
 // Handle institute create on POST.
 /*exports.institute_create_post = function(req, res) {
 res.send('NOT IMPLEMENTED: institute create POST');
@@ -67,6 +79,21 @@ exports.institute_delete = function(req, res) {
 res.send('NOT IMPLEMENTED: institute delete DELETE ' + req.params.id);
 };
 // Handle institute update form on PUT.
-exports.institute_update_put = function(req, res) {
-res.send('NOT IMPLEMENTED: institute update PUT' + req.params.id);
-};
+// Handle Costume update form on PUT.
+exports.institute_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+      let toUpdate = await institutes.findById(req.params.id);
+   
+      // Do updates of properties
+      if (req.body.Name) toUpdate.Name = req.body.Name;
+      if (req.body.Size) toUpdate.Size = req.body.Size;
+      if (req.body.year) toUpdate.year = req.body.year;
+   
+      let result = await toUpdate.save();
+      console.log("Success " + result)
+      res.send(result);
+    } catch (err) {
+      res.status(500).send(`{"error": ${err}: Update for id ${req.params.id} failed`);
+    }};
