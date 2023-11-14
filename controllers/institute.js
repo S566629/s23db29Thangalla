@@ -40,7 +40,7 @@ let document = new institutes();
 // {"costume_type":"goat", "cost":12, "size":"large"}
 document.Name = req.body.Name;
 document.Size = req.body.Size;
-document.year = req.body.Year;
+document.year = req.body.year;
 try{
 let result = await document.save();
 res.send(result);
@@ -75,9 +75,19 @@ exports.institute_detail = async function(req, res) {
 res.send('NOT IMPLEMENTED: institute create POST');
 };*/
 // Handle institute delete form on DELETE.
-exports.institute_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: institute delete DELETE ' + req.params.id);
+//Handle Costume delete on DELETE.
+exports.institute_delete = async function(req, res) {
+console.log("delete " + req.params.id)
+try {
+result = await institutes.findByIdAndDelete( req.params.id)
+console.log("Removed " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": Error deleting ${err}}`);
+}
 };
+
 // Handle institute update form on PUT.
 // Handle Costume update form on PUT.
 exports.institute_update_put = async function(req, res) {
