@@ -151,3 +151,18 @@ res.send(`{'error': '${err}'}`);
 }
 };
 
+exports.institute_delete_Page = async function(req, res) {
+  console.log("Delete view for id " + req.query.id)
+  try{
+  result = await institutes.findById(req.query.id)
+  res.render('institutedelete', { title: 'Institute Delete', toShow:
+  result });
+  }
+  catch(err){
+  res.status(500)
+  res.send(`{'error': '${err}'}`);
+  }
+  };
+ 
+  
+
