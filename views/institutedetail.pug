@@ -2,24 +2,27 @@ extends layout
 
 block content
   h1= title
-  - let instituteid = toShow._id
-  - let Name = toShow.Name
-  - let Size = toShow.Size
-  - let year = toShow.year
+  if (toShow == null)
+    h2 No instance to detail details
+  else
+    - let instituteid = toShow._id
+    - let Name = toShow.Name
+    - let Size = toShow.Size
+    - let year = toShow.year
 
-  div
-    div.row
-      div(class='instituteAttr mr-3') instituteid is:
-      div #{instituteid}
+    div
+      div.row
+        div(class='instituteAttr mr-3') instituteid is:
+        div #{instituteid}
 
-    div.row
-      div(class='instituteAttr mr-3') Name is:
-      div #{Name}
+      div.row
+        div(class='instituteAttr mr-3') Name is:
+        div #{Name}
 
-    div.row
-      div(class='instituteAttr mr-3') Size is:
-      div #{Size}
+      div.row
+        div(class='instituteAttr mr-3') Size is:
+        div #{Size}
 
-    div.row
-      div(class='instituteAttr mr-3') year is:
-      div #{year}
+      div.row
+        div(class='instituteAttr mr-3') year is:
+        div #{year}
