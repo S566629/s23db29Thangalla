@@ -1,9 +1,10 @@
 extends layout
 
 block content
-  h1= title
+  h1(style='color: #333;')= title
+
   if (toShow == null)
-    h2 No instance to delete
+    h2(style='color: red;') No instance to delete
   else
     - let instituteid = toShow._id
     - let Name = toShow.Name
@@ -14,21 +15,21 @@ block content
     script.
       let actionid = "#{actionid}"
 
-    div
+    div(style='border: 2px solid #ccc; padding: 20px; margin: 20px; border-radius: 10px; background-color: #f8f8f8;')
       div.row
-        div(class='instituteAttr mr-3') institute ID is:
-          div #{instituteid}
+        div(class='instituteAttr mr-3' style='color: #555; font-weight: bold; font-size: 18px;') Institute ID:
+          div(style='color: #333; font-size: 16px;') #{instituteid}
       div.row
-        div(class='instituteAttr mr-3') Name is:
-          div #{Name}
+        div(class='instituteAttr mr-3' style='color: #555; font-weight: bold; font-size: 18px;') Name:
+          div(style='color: #333; font-size: 16px;') #{Name}
       div.row
-        div(class='instituteAttr mr-3') Size is:
-          div #{Size}
+        div(class='instituteAttr mr-3' style='color: #555; font-weight: bold; font-size: 18px;') Size:
+          div(style='color: #333; font-size: 16px;') #{Size}
       div.row
-        div(class='instituteAttr mr-3') year is:
-          div #{year}
-      button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
-      button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+        div(class='instituteAttr mr-3' style='color: #555; font-weight: bold; font-size: 18px;') Year:
+          div(style='color: #333; font-size: 16px;') #{year}
+      button(class="btn btn-danger m-2" style='background-color: #ff0000; color: #fff; border: 2px solid #ff0000; border-radius: 8px; padding: 10px; font-size: 16px;' onclick="deleteOnid()") Delete
+      button(class="btn btn-secondary m-2" style='background-color: #333; color: #fff; border: 2px solid #333; border-radius: 8px; padding: 10px; font-size: 16px;' onclick="cancel()") Cancel
 
     script.
       function cancel() {
