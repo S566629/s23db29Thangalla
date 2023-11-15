@@ -1,0 +1,58 @@
+extends layout
+
+block content
+  h1= title
+
+  if (toShow == null)
+    h2 No instance to display details
+  else
+    - let instituteid = toShow._id
+    - let Name = toShow.Name
+    - let Size = toShow.Size
+    - let year = toShow.year
+
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{instituteid}
+
+    - let actionid = "/resource/institute/" + instituteid
+    form(id='InstituteForm', action=actionid, method="PUT")
+      div.form-group
+        label.instituteAttr(for='Name') Institute Name
+        input#Name(type='text', name='Name', value=Name)
+      div.form-group
+        label.instituteAttr(for='Size') Size
+        input#Size(type='text', name='Size', value=Size)
+      div.form-group
+        label.instituteAttr(for='year') Year
+        input#year(type='number', name='year', value=year)
+      input(type='submit')
+
+      script.
+        document.forms['InstituteForm'].addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          try {
+            // Show user that form is being submitted
+            alert("Saving...");
+
+            const formData = new FormData(event.target);
+            const response = await fetch(event.target.action, {
+              method: 'PUT',
+              body: new URLSearchParams(formData),
+            });
+
+            if (!response.ok) {
+              throw new Error(`Save failed with status: ${response.status}`);
+            }
+
+            const responseBody = await response.text();
+            // TODO: Handle the response body as needed
+            alert("Save succeeded");
+
+          } catch (error) {
+            // Handle error
+            console.error("Save failed", error);
+            alert("Save failed: " + error.message);
+          }
+        });
