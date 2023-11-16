@@ -20,8 +20,11 @@ exports.institute_list = async function(req, res) {
     // VIEWS
 // Handle a show all view
 exports.institute_view_all_Page = async function(req, res) {
+    
     try{
+      
     theinstitutes = await institutes.find();
+    console.log(theinstitutes);
     res.render('institute', { title: 'institute Search Results', results: theinstitutes });
     }
     catch(err){

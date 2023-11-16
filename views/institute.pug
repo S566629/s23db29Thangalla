@@ -1,5 +1,5 @@
 extends layout
- 
+
 block content
   h1 #{title}
   .container-fluid
@@ -10,8 +10,15 @@ block content
           h5.card-title #{item.Name}
           p.card-text   #{item.Size}
           p.card-text   #{item.year}
+        - let destination = `dispatch(\"/institute/update?id=${item._id}\")`
+        button.btn(class="btn-primary ml-1", onclick=destination) Update
   script.
     function buy(index) {
       alert(`You purchased item at index: ${index}`);
     }
 
+    function dispatch(path){
+      window.location.href = path;
+    }
+   
+      
