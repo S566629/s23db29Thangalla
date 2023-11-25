@@ -20,5 +20,7 @@ router.put('/institute/:id', institute_controller.institute_update_put);
 router.get('/institute/:id', institute_controller.institute_detail);
 // GET request for list of all Costume items.
 router.get('/institute', institute_controller.institute_list);
+
+
 module.exports = router;
 
