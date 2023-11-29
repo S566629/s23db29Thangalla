@@ -2,6 +2,8 @@ extends layout
 
 block content
   h1 #{title}
+  - let des = `dispatch(\"/institute/create\")`
+  button.btn( class="btn-secondary m-1" onclick= des) Create
   .container-fluid
     .row
       - const result = results
@@ -11,7 +13,11 @@ block content
           p.card-text   #{item.Size}
           p.card-text   #{item.year}
         - let destination = `dispatch(\"/institute/update?id=${item._id}\")`
+        - let destination1 = `dispatch(\"/institute/detail?id=${item._id}\")`
+        - let destination2 = `dispatch(\"/institute/delete?id=${item._id}\")`
         button.btn(class="btn-primary ml-1", onclick=destination) Update
+        button.btn( class="btn-success m-1", onclick= destination1) Details
+        button.btn( class="btn-danger m-1", onclick= destination2) Delete
   script.
     function buy(index) {
       alert(`You purchased item at index: ${index}`);

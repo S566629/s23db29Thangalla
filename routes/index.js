@@ -12,10 +12,10 @@ var passport = require('passport');
 var router = express.Router();
 var Account = require('../models/account');
 router.get('/', function (req, res) {
-res.render('index', { title: 'Costume App', user : req.user });
+res.render('index', { title: 'Institute App', user : req.user });
 });
 router.get('/register', function(req, res) {
-res.render('register', { title: 'Costume App Registration'});
+res.render('register', { title: 'Institutes App Registration'});
 });
 router.post('/register', function(req, res) {
 Account.findOne({ username : req.body.username })
@@ -48,7 +48,7 @@ message: 'Registration error', account : req.body.username })
 
 
 router.get('/login', function(req, res) {
-  res.render('login', { title: 'Costume App Login', user : req.user });
+  res.render('login', { title: 'Institute App Login', user : req.user });
   });
   router.post('/login', passport.authenticate('local'), function(req, res) {
    res.redirect('/');
