@@ -1,7 +1,13 @@
 const mongoose = require("mongoose")
 const instituteSchema = mongoose.Schema({
-Name: String,
-Size: String,
+Name:  {
+    type: String,
+    required: true
+},
+Size: {
+    type: String,
+    required: true
+},
 year: {
     type: Number,
     min: 0,
